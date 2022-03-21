@@ -21,17 +21,18 @@ view_daily = daily_col.checkbox("Daily Stock Chart", help="Selecting this option
 view_intraday = intraday_col.checkbox("Intraday Chart", help="Selecting this option will show the stock's intraday chart")
 view_monthly = monthly_col.checkbox("Monthly Chart", help="Selecting this option will show the stock's montly chart")
 
-
 # Container for charts and csv 
 placeholder = st.empty()
 
 
+# Retrive CSV data
 def fetch_csv_data(ticker_symbol):
     #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_ticker}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
     df = pd.read_csv("daily_IBM.csv")
     st.dataframe(df)
 
 
+# Retrive daily data
 def fetch_daily_data(ticker_symbol):
     #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_ticker}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
     df = pd.read_csv("daily_IBM.csv")
@@ -40,6 +41,7 @@ def fetch_daily_data(ticker_symbol):
     placeholder.line_chart(daily_df, width=1162, use_container_width=False)
 
 
+# Retrive intraday data
 def fetch_intraday_data(ticker_symbol):
     #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_ticker}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
     df = pd.read_csv("intraday_60min_ibm.csv")
@@ -48,6 +50,7 @@ def fetch_intraday_data(ticker_symbol):
     placeholder.line_chart(intraday_df, width=1162, use_container_width=False)
 
 
+# Retrive monthly data
 def fetch_monthly_data(ticker_symbol):
     #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_ticker}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
     df = pd.read_csv("monthly_IBM.csv")
