@@ -1,6 +1,7 @@
 import os
 from time import monotonic
 from turtle import width
+from matplotlib import ticker
 import streamlit as st
 import pandas as pd
 from dotenv import load_dotenv
@@ -34,7 +35,7 @@ def fetch_csv_data(ticker_symbol):
 
 # Retrive daily data
 def fetch_daily_data(ticker_symbol):
-    #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_ticker}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
+    #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={ticker_symbol}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
     df = pd.read_csv("daily_IBM.csv")
     daily_df = df[["timestamp", "close"]]
     daily_df = daily_df.set_index("timestamp")
@@ -43,7 +44,7 @@ def fetch_daily_data(ticker_symbol):
 
 # Retrive intraday data
 def fetch_intraday_data(ticker_symbol):
-    #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_ticker}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
+    #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker_symbol}&interval=60min&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
     df = pd.read_csv("intraday_60min_ibm.csv")
     intraday_df = df[["timestamp", "close"]]
     intraday_df = intraday_df.set_index("timestamp")
@@ -52,7 +53,7 @@ def fetch_intraday_data(ticker_symbol):
 
 # Retrive monthly data
 def fetch_monthly_data(ticker_symbol):
-    #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_ticker}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
+    #csv_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol={ticker_symbol}&apikey={ALPHA_VANTAGE_KEY}&datatype=csv"
     df = pd.read_csv("monthly_IBM.csv")
     monthly_df = df[["timestamp", "close"]]
     monthly_df = monthly_df.set_index("timestamp")
